@@ -16,14 +16,16 @@ public class tictacDemo implements ActionListener {
         frame.setSize(450, 450);
         frame.setResizable(false);
         frame.setLayout(null);
-
+        //Bottom display for winner or invalid clicks messages
         display.setBounds(60, 360, 300, 30);
         display.setFont(new Font("Calibri Bold", Font.CENTER_BASELINE, 20));
         frame.add(display);
 
+        //Main game panel to be playerd
         mainPane.setLayout(new GridLayout(3, 3));
         mainPane.setBounds(60, 40, 300, 300);
 
+        //Player one indicator
         P1 = new JButton("X");
         P1.setBounds(5, 5, 50, 50);
         P1.setBackground(Color.red);
@@ -32,6 +34,7 @@ public class tictacDemo implements ActionListener {
         P1.setEnabled(false);
         frame.add(P1);
 
+        //Player two indicator
         P2 = new JButton("O");
         P2.setBounds(365, 5, 50, 50);
         P2.setBackground(Color.red);
@@ -40,6 +43,7 @@ public class tictacDemo implements ActionListener {
         P2.setEnabled(false);
         frame.add(P2);
 
+        //Start button to enable keys for playing
         Start = new JButton("Start");
         Start.setBounds(160, 0, 100, 40);
         Start.setFont(new Font("Arial Black", Font.BOLD, 18));
@@ -47,13 +51,14 @@ public class tictacDemo implements ActionListener {
         Start.setBackground(Color.GREEN);
         frame.add(Start);
 
+        //Resets progess to start new frame
         Restart = new JButton("Restart");
         Restart.setBounds(140, 0, 140, 40);
         Restart.setFont(new Font("Arial Black", Font.BOLD, 18));
         Restart.addActionListener(this);
         Restart.setBackground(Color.GREEN);
 
-
+        //Creates all buttons in main panel to register players marks
         for (int i = 0; i < btn.length; i++) {
             btn[i] = new JButton();
             btn[i].addActionListener(this);
@@ -63,6 +68,7 @@ public class tictacDemo implements ActionListener {
             mainPane.add(btn[i]);
         }
 
+        //Adding main panel to frame and enabling frame visibility
         frame.add(mainPane);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -90,24 +96,16 @@ public class tictacDemo implements ActionListener {
             new tictacDemo();
         }
 
-//        if (e.getSource() == P1) {
-//            player = "X";
-//            P1.setBackground(Color.green);
-//            P2.setBackground(Color.red);
-//            P2.setEnabled(false);
-//        } else if (e.getSource() == P2) {
-//            player = "O";
-//            P2.setBackground(Color.green);
-//            P1.setBackground(Color.red);
-//            P1.setEnabled(false);
-//        }
-
-
+        //Manages the rules for the game
         for (int i = 0; i < btn.length; i++) {
             if (e.getSource() == btn[i]) {
+                //Prevents overlap clicking
                 if (btn[i].getText().equals("X") || btn[i].getText().equals("O")) {
                     display.setText("!!!!!!!! Invalid Click !!!!!!!!");
-                } else {
+                }
+
+                //Block another player button and mark when its not their turn
+                else {
                     btn[i].setText(player);
                     if (P1.isEnabled()) {
                         P1.setEnabled(false);
