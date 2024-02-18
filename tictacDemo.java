@@ -147,7 +147,7 @@ public class tictacDemo implements ActionListener {
                 }
             }
             //Checks for vertical match
-            else if (i <= 2) {
+            if (i <= 2) {
                 a1 = btn[i].getActionCommand();
                 b1 = btn[i + 3].getActionCommand();
                 c1 = btn[i + 6].getActionCommand();
